@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tien</title>
+</head>
+<body>
+<input placeholder="Tiền nhập" type="text" id="input">
+<select id="inn" onchange="doiTien()">
+    <option value="VNĐ">VNĐ</option>
+    <option value="USD">USD</option>
+    <option value="JPY">JPY</option>
+</select>
+<select id="out" onchange="doiTien()">
+    <option value="VNĐ">VNĐ</option>
+    <option value="USD">USD</option>
+    <option value="JPY">JPY</option>
+</select>
+<h1 id="dkq"> </h1>
+<button onclick="doiTien()">Convert</button>
+<script>
+    function doiTien() {
+        let input = document.getElementById('input').value;
+        let inn = document.getElementById('inn').value;
+        let out = document.getElementById('out').value;
+        let ketQua
+        if (inn === out){
+            document.getElementById('dkq').innerHTML = "<h3 style='color: orangered'>Vui lòng chọn mệnh giá khác</h3>"
+            return
+        }
+        if (inn === "VNĐ") {
+            if (out === "USD") {ketQua= input/25000}
+            if (out === "JPY") {ketQua= input/192}
+                }
+        if (inn === "USD") {
+            if (out === "VNĐ") {ketQua= input*0.000043}
+            if (out === "JPY") {ketQua= input/138.61}
+        }
+        if (inn === "JPY") {
+            if (out === "VNĐ") {ketQua= input*191.82}
+            if (out === "USD") {ketQua= input*0.0072}
+        }
+        document.getElementById('dkq').innerHTML = ketQua+out
+    }
+</script>
+
+</body>
+</html>
